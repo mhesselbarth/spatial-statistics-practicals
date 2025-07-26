@@ -16,6 +16,7 @@ editor_options:
   library(spatstat)
   library(tidyverse)
   library(gganimate)
+  library(gifski)
 ```
 
 First, we need to import the [`spatstat`](https://spatstat.org) package for analyzing spatial point patterns. Also, we import the [`tidyverse`](https://www.tidyverse.org) package, a collection of `R` packages designed for data science.
@@ -101,8 +102,7 @@ However, as you can see in the plot, Besag's L-function is not centered to 0. Al
    eval.fv(l_fct - r)
   }
 
-  Oest <- function(input, r = NULL, 
-                   correction = "Ripley", divisor = "d", ...){
+  Oest.calc <- function(input, r = NULL, correction = "Ripley", divisor = "d", ...){
     
     p_fct <- pcf.ppp(input, r = r,
                      correction = correction, divisor = divisor, ...)
@@ -119,8 +119,8 @@ Now, we can calculate the summary functions and plot them.
   l_function <- Lest.cent(input = alive, 
                           r = seq(from = 0, to = 45, by = 0.5))
 
-  oring_statistic <- Oest(input = alive, 
-                         r = seq(from = 0, to = 45, by = 0.5))
+  oring_statistic <- Oest.calc(input = alive, 
+                               r = seq(from = 0, to = 45, by = 0.5))
 
 ```
 
@@ -134,17 +134,15 @@ Now, we can calculate the summary functions and plot them.
        legend = FALSE)
 ```
 
-Alternatively, these functions are already implemented in the `onpoint` package, a small collection of utility functions based on `spatstat`. The package is only hosted on [*GitHub*](https://r-spatialecology.github.io/onpoint/). To install `onpoint`, you need the `devtools` package. In case you don't have `devtools` installed yet, do it as before and simply use `install_github(repo = "r-spatialecology/onpoint")`.
+Alternatively, these functions are already implemented in the [`onpoint`](https://r-spatialecology.github.io/onpoint/) package (Hesselbarth 2025), a small collection of utility functions based on `spatstat`.
 
 ```{r solution_1_onpoint}
+  # install.packages("onpoint")
   library(onpoint)
 
-  l_function <- center_l_function(x = alive, 
-                                  r = seq(from = 0, to = 45, by = 0.5))
+  l_function <- center_Lest(x = alive, r = seq(from = 0, to = 45, by = 0.5))
 
-  oring_statistic <- estimate_o_ring(x = alive, 
-                                     r = seq(from = 0, to = 45, 
-                                             by = 0.5))
+  oring_statistic <- Oest(x = alive, r = seq(from = 0, to = 45, by = 0.5))
 ```
 
 ### Exercise 3
@@ -153,12 +151,12 @@ Alternatively, these functions are already implemented in the `onpoint` package,
 The function `envelope` of the `spatstat` package calculates simulation envelopes. The number of simulations can be specified with the argument `nsim`, the lowest/highest values with the argument `rank`. When not specified otherwise, the functions uses 'CSR' as null model. The `fun` argument can handle any summary function that `spatstat` provides (or the ones we implemented as long as they return a `fv` object).
 
 ```{r solution_1_calculate_envelopes, message = FALSE, warning = FALSE, results = "hide"}
-  simulation_envelope_39 <- envelope(Y = alive, fun = Oest,
+  simulation_envelope_39 <- envelope(Y = alive, fun = Oest.calc,
                                      r = seq(from = 0, to = 45, 
                                              by = 0.5),
                                      nsim = 39, nrank = 1)
 
-  simulation_envelope_199 <- envelope(Y = alive, fun = Oest, 
+  simulation_envelope_199 <- envelope(Y = alive, fun = Oest.calc, 
                                       r = seq(from = 0, to = 45, 
                                               by = 0.5),
                                       nsim = 199, nrank = 5)
@@ -202,7 +200,7 @@ So this time, we want to subset all 'dead' trees.
 ```{r solution_1_calculate_envelope_dead, message = FALSE, warning = FALSE, results = "hide"}
   dead <- subset(douglas_fir_ppp, marks == "dead")
 
-  simulation_envelope_dead <- envelope(Y = dead, fun = Oest,
+  simulation_envelope_dead <- envelope(Y = dead, fun = Oest.calc,
                                        r = seq(from = 0, to = 45,
                                                by = 0.5),
                                        nsim = 199, nrank = 5)
@@ -236,3 +234,5 @@ Baddeley, A., Rubak, E., Turner, R., 2015. Spatial point patterns: Methodology a
 Getzin, S., Dean, C., He, F., Trofymow, J.A., Wiegand, K., Wiegand, T., 2006. Spatial patterns and competition of tree species in a Douglas fir chronosequence on Vancouver Island. Ecography, 29, 671-682.
 
 Getzin, S., Wiegand, T., Wiegand, K., He, F., 2008. Heterogeneity influences spatial patterns and demographics in forest stands. J. Ecol. 96, 807-820.
+
+Hesselbarth, M.H.K. (2025). onpoint: Helper Functions for Point Pattern Analysis. R package version 1.1, <https://CRAN.R-project.org/package=onpoint>.

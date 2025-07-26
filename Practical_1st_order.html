@@ -14,7 +14,7 @@
 
 <title>1st order properties</title>
 
-<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -33,8 +33,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -378,7 +378,7 @@ $(document).ready(function () {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="https://mhesselbarth.rbind.io">
+      <a href="https://www.maxhesselbarth.com">
         <span class="fa fa-user"></span>
          
         Contact
@@ -389,6 +389,13 @@ $(document).ready(function () {
         <span class="fa fa-github fa-lg"></span>
          
         Github
+      </a>
+    </li>
+    <li>
+      <a href="LICENSE.html">
+        <span class="fa fa-book"></span>
+         
+        License
       </a>
     </li>
   </ul>
@@ -453,10 +460,12 @@ window”.</p>
 ##     intersect, setdiff, setequal, union</code></pre>
 <pre class="r"><code>library(spatstat)</code></pre>
 <pre><code>## Loading required package: spatstat.data</code></pre>
+<pre><code>## Loading required package: spatstat.univar</code></pre>
+<pre><code>## spatstat.univar 3.1-4</code></pre>
 <pre><code>## Loading required package: spatstat.geom</code></pre>
-<pre><code>## spatstat.geom 3.2-5</code></pre>
+<pre><code>## spatstat.geom 3.5-0</code></pre>
 <pre><code>## Loading required package: spatstat.random</code></pre>
-<pre><code>## spatstat.random 3.1-6</code></pre>
+<pre><code>## spatstat.random 3.4-1</code></pre>
 <pre><code>## Loading required package: spatstat.explore</code></pre>
 <pre><code>## Loading required package: nlme</code></pre>
 <pre><code>## 
@@ -464,14 +473,14 @@ window”.</p>
 <pre><code>## The following object is masked from &#39;package:dplyr&#39;:
 ## 
 ##     collapse</code></pre>
-<pre><code>## spatstat.explore 3.2-3</code></pre>
+<pre><code>## spatstat.explore 3.5-2</code></pre>
 <pre><code>## Loading required package: spatstat.model</code></pre>
 <pre><code>## Loading required package: rpart</code></pre>
-<pre><code>## spatstat.model 3.2-6</code></pre>
+<pre><code>## spatstat.model 3.4-0</code></pre>
 <pre><code>## Loading required package: spatstat.linnet</code></pre>
-<pre><code>## spatstat.linnet 3.1-1</code></pre>
+<pre><code>## spatstat.linnet 3.3-1</code></pre>
 <pre><code>## 
-## spatstat 3.0-6 
+## spatstat 3.4-0 
 ## For an introduction to spatstat, type &#39;beginner&#39;</code></pre>
 <pre class="r"><code># read x and y coords of data
 douglas_fir &lt;- read.table(file = &quot;Data/DouglasFir_Adult_vs_Seedling_OGN.txt&quot;,
@@ -488,7 +497,7 @@ douglas_fir_ppp &lt;- spatstat.geom::ppp(x = douglas_fir$x, y = douglas_fir$y,
 
 # create 35 coin flips
 flip_coin(pattern = douglas_fir_ppp, n = 35)</code></pre>
-<pre><code>##  [1] 0 0 1 1 1 0 0 0 1 0 4 0 0 1 1 0 4 1 1 6 0 0 0 0 0 0 0 3 0 2 0 2 0 0 1</code></pre>
+<pre><code>##  [1] 0 0 0 3 0 1 0 0 1 1 0 0 0 1 0 0 1 2 0 0 0 5 0 0 0 0 0 0 0 1 4 0 0 0 0</code></pre>
 
 
 

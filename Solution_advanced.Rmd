@@ -51,12 +51,12 @@ We import the data first and convert it as `ppp`. Also, we reclassify the marks 
 Then, we implement the O-ring statistic.
 
 ```{r solution_adv_define_fun}
-  Oest <- function(input, r = NULL, 
-                   correction = "Ripley", divisor = "d", ...){
+  Oest.calc <- function(input, r = NULL, 
+                        correction = "Ripley", divisor = "d", ...){
     
     p_fct <- pcf(input, r = r,
                  correction = correction, 
-                 divisor = divisor)
+                 divisor = divisor, ...)
     
     lambda <- intensity(unmark(input))
     
@@ -69,7 +69,7 @@ We are just interested in the saplings, therefore we subset them first. Then we 
 ```{r solution_adv_subset_data, results = "hide"}
   saplings <- subset.ppp(hemlock_ppp, marks == "saplings", drop = TRUE)
   
-  o_ring_saplings <- envelope(saplings, fun = Oest,
+  o_ring_saplings <- envelope(saplings, fun = Oest.calc,
                               r = seq(from = 0, to = 45, by = 0.5), 
                               nsim = 199, nrank = 5)
 ```
@@ -95,7 +95,7 @@ We use the function `kkpm()` to fit a cluster point process model. We need to pr
 Now, we can compute the envelopes of the null model and compare it to the observed data.
 
 ```{r solution_adv_envelopes_thomas, results = "hide"}  
-  o22_saplings_thomas <- envelope(saplings, fun = Oest, 
+  o22_saplings_thomas <- envelope(saplings, fun = Oest.calc, 
                                   r = seq(from = 0, to = 45, by = 0.5),
                                   nsim = 199, nrank = 5, 
                                   simulate = simulated_pattern)
@@ -211,27 +211,14 @@ We import the data, classify it and convert it as `ppp` object. We plot the poin
        main = "Hemlock \nadults")
 ```
 
-Also, we need to implement the O-ring statistic as before.
-
-```{r solution_adv_define_fun_new}
-  Oest <- function(input,r = NULL,
-                   correction = "Ripley", divisor = "d", ...){
-    
-    p_fct <- pcf(input,  r = r,
-                 correction = correction, divisor = divisor, ...)
-    
-    lambda <- intensity(unmark(input))
-    
-    eval.fv(p_fct*lambda)
-  }
-``` 
+Also, we need the implemented the O-ring statistic as before.
 
 We calculate the O-ring statistic for the adult trees only, using `envelope()` and the null model of 'CSR'. 
 
 ```{r solution_adv_oring_adults, results = "hide"}
   adults <- subset.ppp(hemlock_ppp, marks == "adults", drop = TRUE)
   
-  envelopes_adults_homo <- envelope(Y = adults, fun = Oest,
+  envelopes_adults_homo <- envelope(Y = adults, fun = Oest.calc,
                                     r = seq(from = 0, to = 45, by = 0.5), 
                                     nsim = 199, rank = 5)
 ```
@@ -274,7 +261,7 @@ Now, we can simulate heterogeneous point patterns following the intensity of the
 Now, we can use the simulated point patterns as input for `envelope()` to create simulation envelopes with the null model of a heterogeneous Poisson process.
 
 ```{r solution_adv_envelopes_hetero, results = "hide"}
-  envelopes_adults_hetero <- envelope(Y = adults, fun = Oest,
+  envelopes_adults_hetero <- envelope(Y = adults, fun = Oest.calc,
                                       r = seq(from = 0, to = 45, 
                                               by = 0.5), 
                                       nsim = 199, rank = 5, 
@@ -287,7 +274,7 @@ Now, we can use the simulated point patterns as input for `envelope()` to create
        main = "Heterogenous Poisson process")
 ```
 
-There is a wrapper around these function in [`onpoint`](https://r-spatialecology.github.io/onpoint/) to simulate a heterogeneous Poisson process as null model (see `?simulate_heterogenous_pattern`).
+There is a wrapper around these function in [`onpoint`](https://r-spatialecology.github.io/onpoint/) (Hesselbarth 2025) to simulate a heterogeneous Poisson process as null model (see `?simulate_heterogenous_pattern`).
 
 #### Using the inhomogenous pair-correlation function
 
@@ -341,7 +328,7 @@ simulated_patterns_hardcore <- rStrauss(beta = intensity(alive),
 The result is a list of simulated point patterns, that can be used as the `simulate` argument of the `envelope()` function. Now, the function calculates the summary function for each pattern in the list and computes the envelopes based on the results.
 
 ```{r s_2b_envelopes_hardcore, message = FALSE, warning = FALSE, results = "hide"}
-envelope_hardcore <- envelope(Y = alive, fun = Oest, 
+envelope_hardcore <- envelope(Y = alive, fun = Oest.calc, 
                               r = seq(from = 0, to = 45, by = 0.5),
                               nsim = 199, nrank = 5,
                               simulate = simulated_patterns_hardcore)
@@ -354,7 +341,7 @@ simulated_patterns_softcore <- rStrauss(beta = intensity(alive),
                                         R = 1, gamma = 0.3, 
                                         nsim = 199, W = alive$window)
 
-envelope_softcore <- envelope(alive, fun = Oest,
+envelope_softcore <- envelope(alive, fun = Oest.calc,
                               r = seq(from = 0, to = 45, by = 0.5),
                               nsim = 199, nrank = 5,
                               simulate = simulated_patterns_softcore)
@@ -379,3 +366,5 @@ Baddeley, A., Rubak, E., Turner, R., 2015. Spatial point patterns: Methodology a
 Getzin, S., Dean, C., He, F., Trofymow, J.A., Wiegand, K., Wiegand, T., 2006. Spatial patterns and competition of tree species in a Douglas fir chronosequence on Vancouver Island. Ecography, 29, 671-682.
 
 Getzin, S., Wiegand, T., Wiegand, K., He, F., 2008. Heterogeneity influences spatial patterns and demographics in forest stands. J. Ecol. 96, 807-820.
+
+Hesselbarth, M.H.K. (2025). onpoint: Helper Functions for Point Pattern Analysis. R package version 1.1, <https://CRAN.R-project.org/package=onpoint>.

@@ -10,7 +10,7 @@ editor_options:
 
 <br>
 
-You can find a link to download the data [**here**](https://mhesselbarth.github.io/spatial_statistics_practicals/data.html). The `.zip`-folder includes two sub-folders, in which you can find the same datasets formatted for both *Programita* (filename extension `.dat`/`.mcf`) and *R* (filename extension `.txt`).
+You can find a link to download the data [**here**](data.html). The `.zip`-folder includes two sub-folders, in which you can find the same datasets formatted for both *Programita* (filename extension `.dat`/`.mcf`) and *R* (filename extension `.txt`).
 
 Especially when using *Programita*, but also using *R*, make screenshots of your results (or save the results to your disk in any other way) for the plenum discussion later.
 

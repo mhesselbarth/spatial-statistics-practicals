@@ -14,7 +14,7 @@
 
 <title>Homogenous null model</title>
 
-<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -33,8 +33,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -378,7 +378,7 @@ $(document).ready(function () {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="https://mhesselbarth.rbind.io">
+      <a href="https://www.maxhesselbarth.com">
         <span class="fa fa-user"></span>
          
         Contact
@@ -389,6 +389,13 @@ $(document).ready(function () {
         <span class="fa fa-github fa-lg"></span>
          
         Github
+      </a>
+    </li>
+    <li>
+      <a href="LICENSE.html">
+        <span class="fa fa-book"></span>
+         
+        License
       </a>
     </li>
   </ul>
@@ -535,8 +542,7 @@ of the estimator when r is close to zero).</p>
    eval.fv(l_fct - r)
   }
 
-  Oest &lt;- function(input, r = NULL, 
-                   correction = &quot;Ripley&quot;, divisor = &quot;d&quot;, ...){
+  Oest.calc &lt;- function(input, r = NULL, correction = &quot;Ripley&quot;, divisor = &quot;d&quot;, ...){
     
     p_fct &lt;- pcf.ppp(input, r = r,
                      correction = correction, divisor = divisor, ...)
@@ -549,25 +555,19 @@ of the estimator when r is close to zero).</p>
 <pre class="r"><code>  l_function &lt;- Lest.cent(input = alive, 
                           r = seq(from = 0, to = 45, by = 0.5))
 
-  oring_statistic &lt;- Oest(input = alive, 
-                         r = seq(from = 0, to = 45, by = 0.5))</code></pre>
+  oring_statistic &lt;- Oest.calc(input = alive, 
+                               r = seq(from = 0, to = 45, by = 0.5))</code></pre>
 <p><img src="Solution_homo_1_files/figure-html/solution_1_plot_fun-1.png" width="672" style="display: block; margin: auto;" /><img src="Solution_homo_1_files/figure-html/solution_1_plot_fun-2.png" width="672" style="display: block; margin: auto;" /></p>
-<p>Alternatively, these functions are already implemented in the
-<code>onpoint</code> package, a small collection of utility functions
-based on <code>spatstat</code>. The package is only hosted on <a
-href="https://r-spatialecology.github.io/onpoint/"><em>GitHub</em></a>.
-To install <code>onpoint</code>, you need the <code>devtools</code>
-package. In case you don’t have <code>devtools</code> installed yet, do
-it as before and simply use
-<code>install_github(repo = "r-spatialecology/onpoint")</code>.</p>
-<pre class="r"><code>  library(onpoint)
+<p>Alternatively, these functions are already implemented in the <a
+href="https://r-spatialecology.github.io/onpoint/"><code>onpoint</code></a>
+package (Hesselbarth 2025), a small collection of utility functions
+based on <code>spatstat</code>.</p>
+<pre class="r"><code>  # install.packages(&quot;onpoint&quot;)
+  library(onpoint)
 
-  l_function &lt;- center_l_function(x = alive, 
-                                  r = seq(from = 0, to = 45, by = 0.5))
+  l_function &lt;- center_Lest(x = alive, r = seq(from = 0, to = 45, by = 0.5))
 
-  oring_statistic &lt;- estimate_o_ring(x = alive, 
-                                     r = seq(from = 0, to = 45, 
-                                             by = 0.5))</code></pre>
+  oring_statistic &lt;- Oest(x = alive, r = seq(from = 0, to = 45, by = 0.5))</code></pre>
 </div>
 <div id="exercise-3" class="section level3">
 <h3>Exercise 3</h3>
@@ -583,12 +583,12 @@ otherwise, the functions uses ‘CSR’ as null model. The <code>fun</code>
 argument can handle any summary function that <code>spatstat</code>
 provides (or the ones we implemented as long as they return a
 <code>fv</code> object).</p>
-<pre class="r"><code>  simulation_envelope_39 &lt;- envelope(Y = alive, fun = Oest,
+<pre class="r"><code>  simulation_envelope_39 &lt;- envelope(Y = alive, fun = Oest.calc,
                                      r = seq(from = 0, to = 45, 
                                              by = 0.5),
                                      nsim = 39, nrank = 1)
 
-  simulation_envelope_199 &lt;- envelope(Y = alive, fun = Oest, 
+  simulation_envelope_199 &lt;- envelope(Y = alive, fun = Oest.calc, 
                                       r = seq(from = 0, to = 45, 
                                               by = 0.5),
                                       nsim = 199, nrank = 5)</code></pre>
@@ -596,8 +596,7 @@ provides (or the ones we implemented as long as they return a
 number of events using a Poisson process, i.e. using random coordinates
 within the study plot with a homogenous intensity and no interaction
 between events.</p>
-<pre><code>## Warning: No renderer available. Please install the gifski, av, or magick
-## package to create animated output</code></pre>
+<p><img src="Solution_homo_1_files/figure-html/visualization_null_model-1.gif" width="65%" style="display: block; margin: auto;" /></p>
 <p>Just use the <code>plot()</code> function to display the results.</p>
 <p><img src="Solution_homo_1_files/figure-html/solution_1_plot_envelopes-1.png" width="672" style="display: block; margin: auto;" /><img src="Solution_homo_1_files/figure-html/solution_1_plot_envelopes-2.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
@@ -609,7 +608,7 @@ trees?</p>
 <p>So this time, we want to subset all ‘dead’ trees.</p>
 <pre class="r"><code>  dead &lt;- subset(douglas_fir_ppp, marks == &quot;dead&quot;)
 
-  simulation_envelope_dead &lt;- envelope(Y = dead, fun = Oest,
+  simulation_envelope_dead &lt;- envelope(Y = dead, fun = Oest.calc,
                                        r = seq(from = 0, to = 45,
                                                by = 0.5),
                                        nsim = 199, nrank = 5)</code></pre>
@@ -637,6 +636,10 @@ fir chronosequence on Vancouver Island. Ecography, 29, 671-682.</p>
 <p>Getzin, S., Wiegand, T., Wiegand, K., He, F., 2008. Heterogeneity
 influences spatial patterns and demographics in forest stands. J. Ecol.
 96, 807-820.</p>
+<p>Hesselbarth, M.H.K. (2025). onpoint: Helper Functions for Point
+Pattern Analysis. R package version 1.1, <a
+href="https://CRAN.R-project.org/package=onpoint"
+class="uri">https://CRAN.R-project.org/package=onpoint</a>.</p>
 </div>
 
 
