@@ -18,7 +18,7 @@ Practicals for Spatial statistics class taught at the University of Goettingen b
 * [Prof. Dr. Kerstin Wiegand](mailto:Kerstin.Wiegand@uni-goettingen.de)
 * [Dr. Stephan Getzin](mailto:stephan.getzin@uni-goettingen.de)
 * [José Ortega](mailto:josemaria.ortegaballadares*uni-goettingen.de)
-* [formerly: Dr. Maximilian H.K. Hesselbarth)](mailto:mhk.hesselbarth@gmail.com)
+* [(formerly: Dr. Maximilian H.K. Hesselbarth)](mailto:mhk.hesselbarth@gmail.com)
 
 ## Aims
 Planning and execution of a scientific investigation based on spatial statistics; Knowledge of statistical methods of spatial point pattern analysis; Introduction to mathematical methods of spatial point pattern analysis and to using analysis software (*Programita*, *R*);

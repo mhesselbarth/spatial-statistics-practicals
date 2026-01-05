@@ -14,7 +14,7 @@
 
 <title>Cluster processes / Mark correlation function / Heterogenous conditions</title>
 
-<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.30/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -417,7 +417,7 @@ function / Heterogenous conditions</h1>
 
 
 <p><br></p>
-<p><img src="logo.png" width="182" style="display: block; margin: auto;" /></p>
+<p><img src="logo.png" alt="" width="182" style="display: block; margin: auto;" /></p>
 <p>As always, we load all needed packages.</p>
 <pre class="r"><code>  library(spatstat)
   library(tidyverse)</code></pre>
@@ -459,7 +459,7 @@ reclassify the marks as 1 == ‘adults’ and 2 == ‘saplings’.</p>
 ## Window: rectangle = [1.22493, 80.43507] x [-1.64345, 85.43345] units
 ##                     (79.21 x 87.08 units)
 ## Window area = 6897.37 square units</code></pre>
-<p><img src="Solution_advanced_files/figure-html/solution_adv_plot_data-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Solution_advanced_files/figure-html/solution_adv_plot_data-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 <p>Then, we implement the O-ring statistic.</p>
 <pre class="r"><code>  Oest.calc &lt;- function(input, r = NULL, 
                         correction = &quot;Ripley&quot;, divisor = &quot;d&quot;, ...){
@@ -480,7 +480,7 @@ and ‘CSR’ as null model.</p>
   o_ring_saplings &lt;- envelope(saplings, fun = Oest.calc,
                               r = seq(from = 0, to = 45, by = 0.5), 
                               nsim = 199, nrank = 5)</code></pre>
-<p><img src="Solution_advanced_files/figure-html/solution_adv_plot_subset-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Solution_advanced_files/figure-html/solution_adv_plot_subset-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="exercise-2" class="section level3">
 <h3>Exercise 2</h3>
@@ -507,7 +507,7 @@ the observed data.</p>
                                   r = seq(from = 0, to = 45, by = 0.5),
                                   nsim = 199, nrank = 5, 
                                   simulate = simulated_pattern)</code></pre>
-<p><img src="Solution_advanced_files/figure-html/solution_adv_plot_thomas-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Solution_advanced_files/figure-html/solution_adv_plot_thomas-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="exercise-3" class="section level3">
 <h3>Exercise 3</h3>
@@ -584,14 +584,14 @@ according to their size.</p>
 ## Window: rectangle = [-0.28027, 103.97027] x [0.04889, 87.78111] units
 ##                     (104.3 x 87.73 units)
 ## Window area = 9146.13 square units</code></pre>
-<p><img src="Solution_advanced_files/figure-html/solution_adv_plot_snd_data-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Solution_advanced_files/figure-html/solution_adv_plot_snd_data-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 <p>The mark-correlation function can be calculated with
 <code>markcorr()</code>. This is very straightforward.</p>
 <pre class="r"><code>  mark_corrlation_douglas_fir &lt;- markcorr(X = douglas_fir_ppp, 
                                           r = seq(from = 0, to = 45,
                                                   by = 0.5),
                                           correction = &quot;Ripley&quot;)</code></pre>
-<p><img src="Solution_advanced_files/figure-html/solution_adv_plot_mark_correlation-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Solution_advanced_files/figure-html/solution_adv_plot_mark_correlation-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="exercise-2-1" class="section level3">
 <h3>Exercise 2</h3>
@@ -608,7 +608,7 @@ the points (<code>simulate</code> argument using
                                                        by = 0.5),
                                                nsim = 199, nrank = 5,
                                                simulate = expression(rlabel(douglas_fir_ppp)))</code></pre>
-<p><img src="Solution_advanced_files/figure-html/solution_adv_plot_envelopes_mark_correlation-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Solution_advanced_files/figure-html/solution_adv_plot_envelopes_mark_correlation-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="inhomogeneous-point-patterns" class="section level1">
@@ -651,7 +651,7 @@ the summary.</p>
 ## Window: rectangle = [1.22493, 80.43507] x [-1.64345, 85.43345] units
 ##                     (79.21 x 87.08 units)
 ## Window area = 6897.37 square units</code></pre>
-<p><img src="Solution_advanced_files/figure-html/solution_adv_plot_trd_data%20-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Solution_advanced_files/figure-html/solution_adv_plot_trd_data%20-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 <p>Also, we need the implemented the O-ring statistic as before.</p>
 <p>We calculate the O-ring statistic for the adult trees only, using
 <code>envelope()</code> and the null model of ‘CSR’.</p>
@@ -860,7 +860,7 @@ the summary.</p>
 ## Warning: In densityBC(): unrecognised argument &#39;rank&#39; was ignored
 ## Warning: In densityBC(): unrecognised argument &#39;rank&#39; was ignored
 ## Warning: In densityBC(): unrecognised argument &#39;rank&#39; was ignored</code></pre>
-<p><img src="Solution_advanced_files/figure-html/solution_adv_plot_oring_adults-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Solution_advanced_files/figure-html/solution_adv_plot_oring_adults-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="exercise-2-2" class="section level3">
 <h3>Exercise 2</h3>
@@ -877,7 +877,7 @@ object.</p>
 
   class(lambda_xy)
 ## [1] &quot;im&quot;</code></pre>
-<p><img src="Solution_advanced_files/figure-html/solution_adv_plot_lambda-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Solution_advanced_files/figure-html/solution_adv_plot_lambda-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="exercise-3-1" class="section level3">
 <h3>Exercise 3</h3>
@@ -893,7 +893,7 @@ patterns (<code>nsim</code>). The result is a list with heterogeneous
 point patterns. If you plot one realization of the simulated data, you
 can see how the random points ‘follow’ the intensity.</p>
 <pre class="r"><code>  simulated_heterogenous_pattern &lt;- rpoispp(lambda = lambda_xy, nsim = 199)</code></pre>
-<p><img src="Solution_advanced_files/figure-html/solution_adv_plot_hetero-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Solution_advanced_files/figure-html/solution_adv_plot_hetero-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 <p>Now, we can use the simulated point patterns as input for
 <code>envelope()</code> to create simulation envelopes with the null
 model of a heterogeneous Poisson process.</p>
@@ -1102,7 +1102,7 @@ model of a heterogeneous Poisson process.</p>
 ## Warning: In densityBC(): unrecognised argument &#39;rank&#39; was ignored
 ## Warning: In densityBC(): unrecognised argument &#39;rank&#39; was ignored
 ## Warning: In densityBC(): unrecognised argument &#39;rank&#39; was ignored</code></pre>
-<p><img src="Solution_advanced_files/figure-html/solution_adv_plot_sim_hetero-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Solution_advanced_files/figure-html/solution_adv_plot_sim_hetero-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 <p>There is a wrapper around these function in <a
 href="https://r-spatialecology.github.io/onpoint/"><code>onpoint</code></a>
 (Hesselbarth 2025) to simulate a heterogeneous Poisson process as null
@@ -1322,7 +1322,7 @@ null model.</p>
 ## Warning: In densityBC(): unrecognised argument &#39;rank&#39; was ignored
 ## Warning: In densityBC(): unrecognised argument &#39;rank&#39; was ignored
 ## Warning: In densityBC(): unrecognised argument &#39;rank&#39; was ignored</code></pre>
-<p><img src="Solution_advanced_files/figure-html/solution_adv_plot_envelopes_hetero-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Solution_advanced_files/figure-html/solution_adv_plot_envelopes_hetero-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 </div>
@@ -1380,7 +1380,7 @@ envelope_softcore &lt;- envelope(alive, fun = Oest.calc,
                               r = seq(from = 0, to = 45, by = 0.5),
                               nsim = 199, nrank = 5,
                               simulate = simulated_patterns_softcore)</code></pre>
-<p><img src="Solution_advanced_files/figure-html/s_2b_plot_hardcore-1.png" width="672" style="display: block; margin: auto;" /><img src="Solution_advanced_files/figure-html/s_2b_plot_hardcore-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Solution_advanced_files/figure-html/s_2b_plot_hardcore-1.png" alt="" width="672" style="display: block; margin: auto;" /><img src="Solution_advanced_files/figure-html/s_2b_plot_hardcore-2.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 <p><strong>References</strong>:</p>
 <p>Baddeley, A., Rubak, E., Turner, R., 2015. Spatial point patterns:
 Methodology and applications with R. Chapman and Hall/CRC Press,

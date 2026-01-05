@@ -14,7 +14,7 @@
 
 <title>Homogenous null model</title>
 
-<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.30/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -416,7 +416,7 @@ $(document).ready(function () {
 
 
 <p><br></p>
-<p><img src="logo.png" width="182" /></p>
+<p><img src="logo.png" alt="" width="182" /></p>
 <p>First, we load all packages, just as before.</p>
 <pre class="r"><code>  library(spatstat)
   library(tidyverse)</code></pre>
@@ -460,10 +460,10 @@ the function should be evaluated (<code>r</code>) just as before.</p>
 <p>If we visualise the null model data, we see that during the
 randomisation the location of all events stay unchanged and only the
 marks are randomly shuffled acroos the events.</p>
-<p><img src="Solution_homo_2_files/figure-html/visualization_null_model_rl-1.gif" width="65%" style="display: block; margin: auto;" /></p>
+<p><img src="Solution_homo_2_files/figure-html/visualization_null_model_rl-1.gif" alt="" width="65%" style="display: block; margin: auto;" /></p>
 <p>The results can be visualised using the <code>plot()</code>
 function.</p>
-<p><img src="Solution_homo_2_files/figure-html/solution_2_plot_envelope-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Solution_homo_2_files/figure-html/solution_2_plot_envelope-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="exercise-6" class="section level3">
 <h3>Exercise 6</h3>
@@ -509,7 +509,7 @@ random_labeling_multiple &lt;- bind_rows(random_labeling_multiple, .id = &quot;i
     scale_colour_manual(name = &quot;&quot;, values = c(&quot;Observed value&quot; = &quot;black&quot;)) +
     facet_wrap(~id) +
     theme_classic()</code></pre>
-<p><img src="Solution_homo_2_files/figure-html/solution_2_plot_different_envelope-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Solution_homo_2_files/figure-html/solution_2_plot_different_envelope-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="exercise-7" class="section level3">
 <h3>Exercise 7</h3>
@@ -535,7 +535,7 @@ object. Also, we reclassify the mark column to 1 == ‘adults’ and 2 ==
                       shape = &quot;rectangle&quot;)
   
   douglas_fir_ppp &lt;- as.ppp(X = douglas_fir, W = plot_area)</code></pre>
-<p><img src="Solution_homo_2_files/figure-html/solution_2_plot_snd_data-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Solution_homo_2_files/figure-html/solution_2_plot_snd_data-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 <p>Now, we need to implement the bivariate O-ring statistic O12(r). We
 want to multiply the bivariate pair-correlation function g12(r) with the
 intensity of lambda2.</p>
@@ -580,7 +580,7 @@ for (i in 1:199) {
 <p>If we visualise the null model patterns, we can see that the location
 of all adult trees does not change, but the the location of all
 seedlings is randomised using CSR.</p>
-<p><img src="Solution_homo_2_files/figure-html/visualization_null_model_antecedent-1.gif" width="65%" style="display: block; margin: auto;" /></p>
+<p><img src="Solution_homo_2_files/figure-html/visualization_null_model_antecedent-1.gif" alt="" width="65%" style="display: block; margin: auto;" /></p>
 <p>Now, we can compute the simulation envelopes as usually.</p>
 <pre class="r"><code>  antecedent_conditions &lt;- envelope(douglas_fir_ppp, 
                                     fun = Oest_cross, 
@@ -589,7 +589,7 @@ seedlings is randomised using CSR.</p>
                                             by = 0.5),
                                     nsim = 199,  nrank = 5,
                                     simulate = null_model_pattern)</code></pre>
-<p><img src="Solution_homo_2_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Solution_homo_2_files/figure-html/unnamed-chunk-1-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 <p>The <a
 href="https://r-spatialecology.github.io/onpoint/"><code>onpoint</code></a>
 (Hesselbarth 2025) package also includes an function to simulate
@@ -610,7 +610,7 @@ shifted (<code>which</code>).</p>
 adult trees is identical between the simulations. However, the location
 of the seedlings are randomised. Using the toroidal shift, you can see
 that the overall spatial structure of the seedlings is preserved</p>
-<p><img src="Solution_homo_2_files/figure-html/visualization_null_model_toroidal-1.gif" width="65%" style="display: block; margin: auto;" /></p>
+<p><img src="Solution_homo_2_files/figure-html/visualization_null_model_toroidal-1.gif" alt="" width="65%" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>toroidal_shift &lt;- envelope(douglas_fir_ppp, fun = Oest_cross, 
                            i = &quot;adults&quot;, j = &quot;seedlings&quot;,
                            r = seq(from = 0, to = 45, by = 0.5),
@@ -618,7 +618,7 @@ that the overall spatial structure of the seedlings is preserved</p>
                            simulate = expression(rshift(douglas_fir_ppp,
                                                         which = &quot;seedlings&quot;, 
                                                         edge = &quot;torus&quot;)))</code></pre>
-<p><img src="Solution_homo_2_files/figure-html/solution_2_plot_toroidal-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Solution_homo_2_files/figure-html/solution_2_plot_toroidal-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 <p><strong>References</strong>:</p>
 <p>Baddeley, A., Rubak, E., Turner, R., 2015. Spatial point patterns:
 Methodology and applications with R. Chapman and Hall/CRC Press,

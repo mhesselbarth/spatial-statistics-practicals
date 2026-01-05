@@ -14,7 +14,7 @@
 
 <title>Homogenous null model</title>
 
-<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.30/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -416,7 +416,7 @@ $(document).ready(function () {
 
 
 <p><br></p>
-<p><img src="logo.png" width="182" /></p>
+<p><img src="logo.png" alt="" width="182" /></p>
 <p>First, we need to import the <a
 href="https://spatstat.org"><code>spatstat</code></a> package for
 analyzing spatial point patterns. Also, we import the <a
@@ -511,7 +511,7 @@ area.</p>
 ## Window: rectangle = [-0.12483, 104.12783] x [-0.1185, 87.8575] units
 ##                     (104.3 x 87.98 units)
 ## Window area = 9171.73 square units</code></pre>
-<p><img src="Solution_homo_1_files/figure-html/solution_1_plot_data-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Solution_homo_1_files/figure-html/solution_1_plot_data-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 <p><code>spatstat</code> provides most summary functions for spatial
 point pattern analysis (see e.g. <code>?Kest()</code>). The result is
 always a <code>fv</code> object (function value). Almost all summary
@@ -525,7 +525,7 @@ at the moment.</p>
                       r = seq(from = 0, to = 45, by = 0.5))
   class(l_fct_alive)
 ## [1] &quot;fv&quot;         &quot;data.frame&quot;</code></pre>
-<p><img src="Solution_homo_1_files/figure-html/solution_1_plot_l_function-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Solution_homo_1_files/figure-html/solution_1_plot_l_function-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 <p>However, as you can see in the plot, Besag’s L-function is not
 centered to 0. Also, the O-ring statistic is not available in
 <code>spatstat</code>. Therefore, we need to write our own functions.
@@ -557,7 +557,7 @@ of the estimator when r is close to zero).</p>
 
   oring_statistic &lt;- Oest.calc(input = alive, 
                                r = seq(from = 0, to = 45, by = 0.5))</code></pre>
-<p><img src="Solution_homo_1_files/figure-html/solution_1_plot_fun-1.png" width="672" style="display: block; margin: auto;" /><img src="Solution_homo_1_files/figure-html/solution_1_plot_fun-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Solution_homo_1_files/figure-html/solution_1_plot_fun-1.png" alt="" width="672" style="display: block; margin: auto;" /><img src="Solution_homo_1_files/figure-html/solution_1_plot_fun-2.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 <p>Alternatively, these functions are already implemented in the <a
 href="https://r-spatialecology.github.io/onpoint/"><code>onpoint</code></a>
 package (Hesselbarth 2025), a small collection of utility functions
@@ -596,9 +596,9 @@ provides (or the ones we implemented as long as they return a
 number of events using a Poisson process, i.e. using random coordinates
 within the study plot with a homogenous intensity and no interaction
 between events.</p>
-<p><img src="Solution_homo_1_files/figure-html/visualization_null_model-1.gif" width="65%" style="display: block; margin: auto;" /></p>
+<p><img src="Solution_homo_1_files/figure-html/visualization_null_model-1.gif" alt="" width="65%" style="display: block; margin: auto;" /></p>
 <p>Just use the <code>plot()</code> function to display the results.</p>
-<p><img src="Solution_homo_1_files/figure-html/solution_1_plot_envelopes-1.png" width="672" style="display: block; margin: auto;" /><img src="Solution_homo_1_files/figure-html/solution_1_plot_envelopes-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Solution_homo_1_files/figure-html/solution_1_plot_envelopes-1.png" alt="" width="672" style="display: block; margin: auto;" /><img src="Solution_homo_1_files/figure-html/solution_1_plot_envelopes-2.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="exercise-4" class="section level3">
 <h3>Exercise 4</h3>
@@ -612,7 +612,7 @@ trees?</p>
                                        r = seq(from = 0, to = 45,
                                                by = 0.5),
                                        nsim = 199, nrank = 5)</code></pre>
-<p><img src="Solution_homo_1_files/figure-html/solution_1_plot_envelope_dead-1.png" width="672" style="display: block; margin: auto;" /><img src="Solution_homo_1_files/figure-html/solution_1_plot_envelope_dead-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Solution_homo_1_files/figure-html/solution_1_plot_envelope_dead-1.png" alt="" width="672" style="display: block; margin: auto;" /><img src="Solution_homo_1_files/figure-html/solution_1_plot_envelope_dead-2.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="some-more" class="section level3">
 <h3>…some more</h3>
@@ -625,7 +625,7 @@ value in relation to the envelopes.</p>
                 xlab = &quot;r [m]&quot;, ylab = &quot;O(r)&quot;,
                 title = &quot;Univariate O-ring statistic\nliving trees&quot;,
                 base_size = 7.5)</code></pre>
-<p><img src="Solution_homo_1_files/figure-html/solution_1_quantum_plot-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Solution_homo_1_files/figure-html/solution_1_quantum_plot-1.png" alt="" width="672" style="display: block; margin: auto;" /></p>
 <p><strong>References</strong>:</p>
 <p>Baddeley, A., Rubak, E., Turner, R., 2015. Spatial point patterns:
 Methodology and applications with R. Chapman and Hall/CRC Press,
